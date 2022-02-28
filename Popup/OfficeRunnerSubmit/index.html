@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games-Galore</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="logo">
+        <img src="./Images/logo.png" alt="logo" id="logo-image">
+    </div>
+    <div class="page-wrapper">
+        <div class="detail-container">
+            <div class="score">
+                <h4 style="font-family: goldman; color: white; font-size: 30px;"><span id="your-score">Your score</span>  <br><span id="is">is</span> <br> <span id="score-count"> 250</span></h4>
+            </div>
+            <div class="player-details">
+                <div class="spacing">
+                    <label for="name" id="name-label" class="label-text">NAME</label>
+                </div>
+                <div>
+                    <input type="text" id="name" name="name" class="input-style">
+                </div>
+                <div class="spacing">
+                    <label for="mobilenr" id="mobile-label" class="label-text">MOBILE NUMBER</label>
+                </div>
+                <div>
+                    <input type="number" id="mobilenr" name="mobilenr" class="input-style">
+                </div>
+                <div class="spacing">
+                    <label for="email-address" id="email-label" class="label-text">EMAIL</label>
+                </div>
+                <div>
+                    <input type="email" id="email" name="email-address" class="input-style">
+                </div>
+            </div>
+            <div class="link">
+                <a href="https://ohmycarsstorage.blob.core.windows.net/resources/Privacy%20Policy.pdf">Terms and conditions</a>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" id="iagree" name="iagree" value="accept">
+                <label for="iagree">I accept.</label><br>
+            </div>
+            <div class="buttons">
+                <img src="./Images/Bt1.png" class="button-image" id="submit" onclick="submitClick()">
+                <img src="./Images/Bt3.png" class="button-image" id="cancel" onclick="cancelClick()">
+            </div>
+        </div>
+    </div>
+    <script src="./code.js"></script>
+</body>
+</html>
