@@ -20,7 +20,7 @@ function submitClick(){
 
   var objectToSubmit = Object.assign(userInfoObject,payloadObject);
 
-  var postURL = window.location.href.includes('localhost') ? 'https://localhost:44347/GGDash/postSubmission' : ''
+  var postURL = window.location.href.includes('localhost') ? 'https://localhost:44347/GGDash/postSubmission' : 'https://localhost:44347/GGDash/postSubmission'
 
   $.post(postURL,
     objectToSubmit,
