@@ -21,7 +21,7 @@ function submitClick(){
   var objectToSubmit = Object.assign(userInfoObject,payloadObject);
 
   var postURL = window.location.href.includes('localhost') ? 'https://localhost:44347/GGDash/postSubmission' : 'https://gamesgalore.azurewebsites.net/GGDash/postSubmission'
-
+  console.log('Post URL: ' + postURL);
   $.post(postURL,
     objectToSubmit,
     function(data, status){
@@ -71,5 +71,5 @@ function returnToGame(){
 }
 
 function GetShareUrl(){
-  return `https://gamesgalorefrontend.azurewebsites.net/ggDash/share?token=HqceX4jppeTclh%2fKo9PMXIKjF3JDTB5FW5wV5dJJA29%2fDCW%2bgX5j6arhn8G14WvQmEmhLeyC7tNx6tdWGTiZNNCEPxZcU5XDaRFUncbh0%2bGufwxpapvSOK8NPrQAtb2lktqiiHqM5nHauK%2bIz2tYc2%2bb2yFqgzh14%2bM%2bHip7FmBXkZxuoi3XS2g%2bPBP46w6J2SQSG9SqQ7DMLy1OQE5zc4k4PlWLj9yFmq4yVL9vxdk%3d`
+  return `https://gamesgalorefrontend.azurewebsites.net/ggDash/share?token=${sessionStorage.getItem('shareToken')}`;
 }
