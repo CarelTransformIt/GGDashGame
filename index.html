@@ -94,7 +94,14 @@
             document.getElementById("submitframe").src = "./Popup/OfficeRunnerSubmit/share.html";
           }
         });
-        
+
+        eventer(messageEvent, function (e) {
+          if (e.data === "Refresh" || e.message === "Refresh") 
+          {
+            location.reload();
+          }
+        });
+
         myGameInstance = unityInstance;
         loadingBar.style.display = "none";
         fullscreenButton.onclick = () => {
