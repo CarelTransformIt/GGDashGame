@@ -93,11 +93,10 @@
           {
             document.getElementById("submitframe").src = "./Popup/OfficeRunnerSubmit/share.html";
           }
-        });
-
-        eventer(messageEvent, function (e) {
           if (e.data === "Refresh" || e.message === "Refresh") 
           {
+            alert('Refresh');
+            console.log('Refresh');
             location.reload();
           }
         });
