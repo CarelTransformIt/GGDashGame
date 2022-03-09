@@ -205,3 +205,12 @@ a:active {
         line-height: 25px;
     }
 }
+
+
+.error-messages{
+  color: red; 
+  display: flex; 
+  flex-direction: column;
+  font-family: goldman; 
+  font-size: 30px;
+}

@@ -1,17 +1,70 @@
+const postURLBase = window.location.href.includes('localhost') ? 'https://localhost:44347/' : 'https://gamesgalore.azurewebsites.net/'
+
 let userName = document.getElementById('name');
 let mobileNr = document.getElementById('mobilenr');
 let email = document.getElementById('email');
 
+function appendError(message){
+  var error = document.getElementById("error-text");
+  var errorSpan = document.createElement("span");
+  errorSpan.textContent = message;
+  error.appendChild(errorSpan);
+}
+
+function clearErrors(){
+  var error = document.getElementById("error-text");
+  error.innerHTML = ``;
+}
+
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+
+const validateMobile = (mobile) => {
+  return String(mobile)
+    .toLowerCase()
+    .match(
+      /^(\+27|0)[6-8][0-9]{8}$/
+    );
+};
+
 function submitClick(){
+  clearErrors();
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   document.getElementById('submit').style = "Transform:scale(0.9);"
   document.getElementById('submit').src='./Images/Bt2.png';
-
-  var userName = document.getElementById("name").value;
+  
+  //var userName = document.getElementById("name").value;
   var userNumber = document.getElementById("mobilenr").value;
   var userEmail = document.getElementById("email").value;
+  var userAgree = document.getElementById("iagree").checked;
+  debugger;
+
+  if(userName == "") {
+    appendError("Invalid user name")
+    return false;
+  }
+
+  if(!validateMobile(userNumber)) {
+    appendError("Invalid mobile number")
+    return false;
+  }
+  
+  // if(!validateEmail(userEmail))
+  // {
+  //   appendError("Invalid Email")
+  //   return false;
+  // }
+  if (userAgree == false) {
+    appendError("You need to accept the terms and conditions")
+    return false;
+  }
 
   var userInfoObject = {
-    name: userName,
     number: userNumber,
     email: userEmail
   }
@@ -21,13 +74,14 @@ function submitClick(){
   var objectToSubmit = Object.assign(userInfoObject,payloadObject);
 
   var postURL = window.location.href.includes('localhost') ? 'https://localhost:44347/GGDash/postSubmission' : 'https://gamesgalore.azurewebsites.net/GGDash/postSubmission'
-  console.log('Post URL: ' + postURL);
+
   $.post(postURL,
     objectToSubmit,
     function(data, status){
       if(data){
         parent.postMessage("CloseSubmitModal", "*");
-        sessionStorage.setItem('shareToken',data);
+        sessionStorage.setItem('nickName',data);
+        // sessionStorage.setItem('shareToken',data);
       }
     }
   );
@@ -56,12 +110,6 @@ function setScore(){
   }
 }
 
-function shareToFacebook(){
-  var sharetoken = sessionStorage.getItem('shareToken');
-  window.open(`https://www.facebook.com/sharer.php?u=https%3A%2F%2Fgamesgalorefrontend.azurewebsites.net%2FGGDash%2Fshare%3Ftoken%3D${sharetoken}`);
-  //window.open(`https://www.facebook.com/sharer.php?u=gamesgalorefrontend.azurewebsites.net/GGDash/Share?token=HqceX4jppeTclh%2fKo9PMXIKjF3JDTB5FW5wV5dJJA29%2fDCW%2bgX5j6arhn8G14WvQGjWi5tZ5dBYWrio4utSMyaWGQViMzKuPrDb1MPamgbHdRRRA3OssAg0oa82wjyc2k4UqCPlSkywTqT3VjW0vmIwFaCIZFKrRGqsqWwRr0P3DFsscu4YwSpRSEIo5bv%2bVwVF9gQRanQ4eE4u0DWMmsE0fm%2fnI4ZIwBNPcQVPzhHk%3d`);
-}
-
 function returnToGame(){
   var modal = document.getElementById("myModal");
   
@@ -73,3 +121,17 @@ function returnToGame(){
 function GetShareUrl(){
   return `https://gamesgalorefrontend.azurewebsites.net/ggDash/share?token=${sessionStorage.getItem('shareToken')}`;
 }
+
+//#region NickName
+function NickNamePageMount(){
+
+  //Get nicknames
+  $.get( `${postURLBase}/GGDash/getNicknames`, function( data ) {
+    
+  });
+
+  $.get( `${postURLBase}/GGDash/getNicknames`, function( data ) {
+    
+  });
+}
+//#endregion

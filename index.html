@@ -75,6 +75,8 @@
       setTimeout(() => {
         mobileWarning.style.display = "none";
       }, 5000);
+      canvas.style.width = "960px";
+      canvas.style.height = "600px";
     } else {
       canvas.style.width = "960px";
       canvas.style.height = "600px";
@@ -92,12 +94,6 @@
           if (e.data === "CloseSubmitModal" || e.message === "CloseSubmitModal") 
           {
             document.getElementById("submitframe").src = "./Popup/OfficeRunnerSubmit/share.html";
-          }
-          if (e.data === "Refresh" || e.message === "Refresh") 
-          {
-            alert('Refresh');
-            console.log('Refresh');
-            location.reload();
           }
         });
 
