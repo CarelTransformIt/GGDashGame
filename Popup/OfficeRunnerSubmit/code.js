@@ -1,4 +1,4 @@
-const postURLBase = window.location.href.includes('localhost') ? 'https://localhost:44347/' : 'https://gamesgalore.azurewebsites.net/'
+const postURLBase = (window.location.href.includes('localhost') || window.location.href.includes('127.0.0.1')) ? 'https://localhost:44347/' : 'https://gamesgalore.azurewebsites.net/'
 
 let userName = document.getElementById('name');
 let mobileNr = document.getElementById('mobilenr');
@@ -126,12 +126,29 @@ function GetShareUrl(){
 function NickNamePageMount(){
 
   //Get nicknames
-  $.get( `${postURLBase}/GGDash/getNicknames`, function( data ) {
+  $.get( `${postURLBase}GGDash/getNicknames`, function( data ) {
+    var select = document.getElementById("names");
+    for (var i = 0; i < data.length; i++) {
+      var optn = data[i];
+      var el = document.createElement("option");
+      el.textContent = optn;
+      el.value = optn;
+      select.appendChild(el);
+  }
+  }).done(
+    () => {
+      $.get( `${postURLBase}GGDash/getNicknameForPlayer?token={}`, function( data ) {
     
-  });
+      });
+    }
+  );
+}
 
-  $.get( `${postURLBase}/GGDash/getNicknames`, function( data ) {
-    
-  });
+function submitNickname(){
+  $.post(
+    `${postURLBase}GGDash/getNicknames`,
+    {},
+    (reponse)=> {}
+  );
 }
 //#endregion

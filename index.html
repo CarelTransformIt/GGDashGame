@@ -40,14 +40,15 @@
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/GGDashGame.asm.loader.js";
     var config = {
-      dataUrl: buildUrl + "/GGDashGame.data.unityweb",
-      frameworkUrl: buildUrl + "/GGDashGame.asm.framework.js.unityweb",
-      codeUrl: buildUrl + "/GGDashGame.asm.js.unityweb",
-      memoryUrl: buildUrl + "/GGDashGame.asm.mem.unityweb",
+      dataUrl: buildUrl + "/GGDashGame.data",
+      frameworkUrl: buildUrl + "/GGDashGame.asm.framework.js",
+      codeUrl: buildUrl + "/GGDashGame.asm.js",
+      memoryUrl: buildUrl + "/GGDashGame.asm.mem",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "GamesGalore",
       productName: "Games Galore Office Run",
       productVersion: "1.1",
+      
     };
 
     var container = document.querySelector("#unity-container");
@@ -81,9 +82,11 @@
 
     var script = document.createElement("script");
     script.src = loaderUrl;
+
     script.onload = () => {
       createUnityInstance(canvas, config, (progress) => {
         progressBarFull.style.width = 100 * progress + "%";
+        TOTAL_MEMORY = 1610612736;
       }).then((unityInstance) => {
 
         eventer(messageEvent, function (e) {
